@@ -3,7 +3,6 @@ from CoolProp.CoolProp import PropsSI
 from CoolProp.Plots import PropertyPlot, SimpleCompressionCycle
 import matplotlib.pyplot as plt
 import numpy as np
-import csv
 
 from helpers import bar_to_kPa, kw_to_tr
 
@@ -12,11 +11,11 @@ deg = u"\N{DEGREE SIGN}"
 refrigerant = 'R32'
 
 '''Suction Conditions'''
-t_sat_evap = 0 #degC
+t_sat_evap = 1.7 #degC
 superheat = 10 #degC
 
 '''Discharge Conditions'''
-t_sat_cond = 68 #degC
+t_sat_cond = 51.7 #degC
 subcooling = 5 #degC
 
 '''Compressor Parameters'''
@@ -126,7 +125,7 @@ plt.plot(enthalpies, pressures, 'b')
 
 plt.xlabel("Specific Enthalpy [kJ/kg]")
 plt.ylabel("Pressure [bar]")
-plt.title(f"Refrigeration Cycle with {refrigerant}")
+plt.title(f"Compression Cycle with {refrigerant}")
 plt.grid()
 
 plt.savefig("Charts/Cycle.png")
@@ -134,6 +133,6 @@ plt.savefig("Charts/Cycle.png")
 pp.draw_process(sc)
 pp.title("p-h Diagram")
 pp.savefig('Charts/p-h.png')
-pp.show()
+#pp.show()
 
-plt.show()
+#plt.show()

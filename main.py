@@ -12,7 +12,7 @@ refrigerant = 'R134a'
 
 '''Suction Conditions'''
 t_sat_evap = 1.7 #degC
-superheat = 10 #degC
+superheat = 5 #degC
 
 '''Discharge Conditions'''
 t_sat_cond = 51.7 #degC
@@ -100,8 +100,14 @@ h_points = np.array([h1, h2a, h3, h4, h1])
 p_points = np.array([p_suc, p_dis, p_dis, p_suc, p_suc])
 
 
-pp = PropertyPlot(f"HEOS::{refrigerant}", 'PH', unit_system='EUR')
+#pp = PropertyPlot(f"HEOS::{refrigerant}", 'PH', unit_system='EUR')
+pp = PropertyPlot(refrigerant, 'ph')
+
 pp.calc_isolines()
+#pp.calc_isolines(CoolProp.iQ, num=10)
+#pp.calc_isolines(CoolProp.iT, num=10)
+#pp.calc_isolines(CoolProp.iSmass, num=10)
+
 cycle = SimpleCompressionCycle(f"HEOS::{refrigerant}", 'PH', unit_system='EUR')
 T0 = 273.15+t_sat_evap
 pp.state.update(CoolProp.QT_INPUTS,0.0,T0-superheat)
